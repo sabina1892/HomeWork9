@@ -4,6 +4,9 @@ import HomeWork4.Human;
 import HomeWork4.Pet;
 import org.junit.jupiter.api.Test;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -25,10 +28,7 @@ public class aHappyFamily1 {
         Family family1 = new Family(mother1,father1);
         System.out.println("-----");
 
-        FamilyController familyController = new FamilyController(new FamilyService(new CollectionFamilyDao()));
-        familyController.displayAllFamilies();
-        familyController.getFamiliesBiggerThan(5);
-        System.out.println("-----");
+
 
 
 
@@ -46,10 +46,10 @@ public class aHappyFamily1 {
         family1.setPet(bezdim_pet);
         Men men = new Men();
         Women women = new Women();
-        men.greetPet();
+       /* men.greetPet();
         men.repairCar();
         women.greetPet();
-        women.makeUp();
+        women.makeUp();*/
 
         family.addChild(child);
         family.countFamily();
@@ -61,21 +61,33 @@ public class aHappyFamily1 {
         family.countFamily();
         //family.finalize();
         //  pet.finalize();
-        family1.addChild(child);
+        family1.addChild(child1);
         family1.countFamily();
         System.out.println(child1.getFamily());
         System.out.println(family1);
 
-        family1.deleteChild(child);
+        /*family1.deleteChild(child1);
         System.out.println(family1);
-        family1.countFamily();
+        family1.countFamily();*/
         //family1.finalize();
         //  pet.finalize();
 
         System.out.println();
 
 
+        FamilyController familyController = new FamilyController(new FamilyService(new CollectionFamilyDao()));
 
+        Family family01 = familyController.createNewFamily(mother,father);
+        Family family02 = familyController.createNewFamily(mother1,father1);
+        familyController.getFamilyByIndex(0);
+        familyController.addPet(0,pet);
+        familyController.adoptChild(child,family01);
+        familyController.adoptChild(child1,family02);
+        familyController.displayAllFamilies();
+        System.out.println(familyController.getFamiliesBiggerThan(1));
+        System.out.println(familyController.getFamiliesLessThan(10));
+        System.out.println(familyController.countFamiliesWithMemberNumber(2));
+        System.out.println("-----");
 
 
         for (int i = 0; i < 10000; i++) {
